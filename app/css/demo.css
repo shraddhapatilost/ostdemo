@@ -1,0 +1,23 @@
+html,body,.container-fluid{
+	height: 100%;
+}
+.circle-div{
+	border-radius: 200px;
+	background-color: #34445b;
+	height: 150px;
+	width: 150px;
+}
+
+svg{
+    align-self: center;   
+	margin: 0 auto;
+}
+
+.indexItems{
+	display: inline-block;
+}
+
+.code-snippet{
+	background: black;
+	color: #ffffff;
+}
