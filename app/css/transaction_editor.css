@@ -1,0 +1,143 @@
+h1,h2,h3,h4,h5,h6{
+    color:#438BAD ;
+}
+
+hr{
+    border-top: 2px solid #D9E8EF;
+}
+.form-label{
+    color: #8EB9CE;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    margin: 0 0 5px 0;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+.btn-gold{
+    border-color: #E4B030;
+    background: #E4B030;
+    color: #fff;
+}
+.ost-btn-secondary {
+    border: 1px solid #34445b;
+    background: #fff;
+    color: #34445b;
+}
+.btn {
+    text-transform: uppercase;
+    font-weight: 500;
+    min-width: 185px;
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+    padding: 0.75rem;
+}
+.card-link {
+    color: #8EB9CE;
+    font-size: 0.8rem;
+    letter-spacing: 0.4px;
+    border-bottom: 1px solid #8EB9CE;
+}
+.radio-button-label {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 14px 0px 0px 25px;
+    position: relative;
+    color: #597A84;
+    letter-spacing: 0.5px;
+
+
+}
+.radio-button-circle {
+    border-radius: 50%;
+    cursor: pointer;
+    display: block;
+    height: 8px;
+    left: 4px;
+    position: absolute;
+    top: 20px;
+    transition: background-color .1s ease-out;
+    vertical-align: middle;
+    width: 8px;
+}
+.radio-button:checked .radio-button-circle {
+    background-color: #597A84;
+}
+.mocker-card {
+    border: none;
+    background-color: #f1f5f8;
+}
+.card-body {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+}
+.card-body {
+    flex: 1 1 auto;
+}
+.ost-mocker-header {
+    color: #8EB9CE;
+}
+.mocker-card .card-body .ost-mocker-value-wrap, .mocker-card .card-body .ost-mocker-footer {
+    color: #819AA1;
+}
+
+.slider-with-input.right .slider-horizontal {
+    margin: 0 0 0 10px;
+}
+.slider-with-input .slider {
+    flex-grow: 1;
+    max-width: 100%;
+}
+.slider.slider-horizontal {
+    width: 210px;
+    height: 20px;
+}
+.slider {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+}
+.slider-with-input {
+    width: 100%;
+}
+.slider-with-input .slider {
+    flex-grow: 1;
+    max-width: 100%;
+}
+.slider-input-left {
+    width: 1%;
+    min-width: 100px;
+    display: table-cell;
+    padding-right: 12px;
+}
+.slider-input-left input {
+    text-align: left;
+}
+.slider-input-right {
+    width: 1%;
+    min-width: 120px;
+    display: table-cell;
+    padding-left: 12px;
+}
+.slider-input-right input {
+    text-align: right;
+}
+.slider-input-bottom,
+.slider-input-top{
+    display: table-row;
+    width: 100%;
+}
+.slider-input-bottom input {
+    margin-top: 5px;
+    text-align: right;
+}
+.slider-input-line {
+    margin-top: 5px;
+}
+.form-check-inline {
+    display: inline-flex;
+    align-items: center;
+    padding-left: 0;
+    margin-right: 0.75rem;
+}

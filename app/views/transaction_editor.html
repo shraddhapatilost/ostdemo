@@ -2,6 +2,10 @@
     <head>
         <title> Reserve </title>
         <link rel="stylesheet" type="text/css" href="../css/demo.css">
+        <link rel="stylesheet" type="text/css" href="../css/transaction_editor.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.1/css/bootstrap-slider.css">
+
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     </head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -15,6 +19,9 @@
     <script type="text/javascript" src="../javascript/demo.js"></script>
     <script type="text/javascript" src="../javascript/Cookies.js"></script>
     <script type="text/javascript" src="../javascript/transaction_editor.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.1/bootstrap-slider.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/transaction_editor.css">
     <body>
     <div class="container">
         <form id="transaction_editor_form" class="user-form" action="/api/client/sign-up" method="POST" data-ost-formhelper>
@@ -96,23 +103,23 @@
             <div class="row" id="j-action-amount-wrap">
                 <div class="col-4">
                     <div class="form-group" id="transaction_value_in_fiat_form_group">
-                        <label class="form-label text-uppercase" data-forid="transaction_name">Action amount (<%= fiat_display_text %>)</label>
+                        <label class="form-label text-uppercase" data-forid="transaction_name">Action amount (fiat_display_text )</label>
                             <input id="value_in_fiat" type="number" name="amount"
                             class="form-control" aria-describedby="emailHelp" max="100"
                             step="0.01" min="0.01" data-ost-num-autocorrect-element
-                            placeholder="Value in (<%= fiat_display_text %>)" required/>
+                            placeholder="Action amount (fiat_display_text )" required/>
                             <div class="invalid-feedback" data-forid="value_in_fiat">&nbps;</div>
                     </div>
                 </div>
 
                 <div class="col-4">
                     <div class="form-group" id="value_in_bt_form_group">
-                        <label class="form-label text-uppercase" data-forid="transaction_name">Action amount (<%= bt_symbol %>)</label>
+                        <label class="form-label text-uppercase" data-forid="transaction_name">Action amount ( bt_symbol)</label>
                         <input id="value_in_bt" type="number"
                             name="amount" class="form-control"
                             step="0.00001" min="0.00001"
                             data-ost-num-autocorrect-element
-                            aria-describedby="emailHelp" placeholder="Amount in (<%= bt_symbol %>)" required/>
+                            aria-describedby="emailHelp" placeholder="Action amount ( bt_symbol)" required/>
                         <div class="invalid-feedback" data-forid="value_in_bt">&nbps;</div>
                     </div>
                 </div>
@@ -120,14 +127,19 @@
                 <div class="col-2 mt-2">
                     <input type="hidden" name="value_in_ost" id="value_in_ost" value="7.5" />
                     <div style="margin-top: 2px;">
-                    <%= render :partial => "/shared/web/common/mocker",
-                        :locals => {
-                        :header => "AMOUNT IN #{ost_currency_symbol}",
-                        :mock_selector => "#value_in_ost",
-                        :mock_type => "ost",
-                        :value => "15.898"
-                        }
-                    %>
+                        <div class="card mocker-card <%= card_classes %> ">
+                            <div class="card-body">
+                                <div class="ost-mocker-header">header</div>
+                                <div class="ost-mocker-value-wrap">
+                                    <div class="ost-mocker-value-pre"></div>
+                                    <div class="ost-mocker-value" data-type="<%= raw mock_type %>" data-ost-mock-element="<%= raw mock_selector %>">15.898</div>
+                                    <div class="ost-mocker-value-post"></div>
+                                </div>
+                                <div class="ost-mocker-footer"></div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
@@ -178,22 +190,54 @@
                             </div>
                         </div>
                         <div class="col-8">
-                            <%= render partial: 'shared/web/common/slider_right',
-                                locals: {
-                                label: '',
-                                id: 'commission_percent',
-                                name: 'commission_percent',
-                                type: 'number',
-                                min: 0,
-                                max: 100,
-                                step: 0.01,
-                                value: 1,
-                                postfix: percent_symbol,
-                                suffix: percent_symbol,
-                                tooltip: 'show',
-                                classes: 'slider-primary'
-                                }
-                            %>
+                           <!-- slider starts -->
+                            <div class="form-group" id="<%=id%>_slider_form_group">
+                                <label class="form-label" for="<%=id%>"></label>
+
+                                <div class="input-group slider-with-input right d-flex align-items-center mt-4 mb-3 slider-primary">
+                                    <input
+                                            type="text"
+                                            id="commission_percent_slider"
+                                            data-provide="slider"
+                                            data-slider-min="0"
+                                            data-slider-max="100"
+                                            data-slider-step="0.01"
+                                            data-slider-value="1"
+                                            data-slider-tooltip="show"
+                                            >
+                                    <!--<% if defined? ticks %>data-slider-ticks="<%=ticks.to_s%>"<% end %>-->
+                                    <!--<% if defined? ticks_labels %>data-slider-ticks-labels='<%=raw ticks_labels.to_s%>'<% end %>-->
+                                    <!--&gt;-->
+
+                                    <span class="slider-input-right">
+                                        <div class="input-group">
+
+                                            <!--<span class="input-group-prepend">-->
+                                                <!--<span class="input-group-text">-->
+                                                <!--</span>-->
+                                            <!--</span>-->
+
+                                        <input type="<%=type%>" class="form-control" id="<%=id%>" name="<%=name%>"
+                                               min="<%=min%>" max="<%=max%>" step="<%=step%>" />
+                                            <span class="input-group-append">
+                                                <span class="input-group-text">
+                                                %</span>
+                                            </span>
+
+                                        </div>
+                                    </span>
+                                </div>
+                                    <div class="d-flex align-items-center" style="margin-top: -20px; font-size: 12px;">
+                                        <div style="flex-grow: 1; max-width: 100%; color: #597a84">
+                                            <span class="text-left">0 % </span>
+                                            <span class="text-right float-right">100 %</span>
+                                        </div>
+                                        <div class="slider-input-right"></div>
+                                    </div>
+                                    <div class="invalid-feedback" data-forname="<%=name%>">&nbps;</div>
+                            </div>
+
+                            <!-- slider ends -->
                             <input type="hidden" name="commission_in_bt" id="commission_in_bt" value="5" />
                             <input type="hidden" name="commission_in_fiat" id="commission_in_fiat" value="1.5" />
                         </div>
@@ -201,21 +245,31 @@
                         <div class="col-4" id="j-mocker-content-wrap">
                             <div class="row">
                                 <div class="col-6 mt-1">
-                                    <%= render :partial => "/shared/web/common/mocker",
-                                                :locals => {
-                                                    :header => "AMOUNT IN " + bt_symbol,
-                                                    :mock_selector => "#commission_in_bt"
-                                                }
-                                    %>
+                                    <div class="card mocker-card <%= card_classes %> ">
+                                        <div class="card-body">
+                                            <div class="ost-mocker-header">header</div>
+                                            <div class="ost-mocker-value-wrap">
+                                                <div class="ost-mocker-value-pre"></div>
+                                                <div class="ost-mocker-value" data-type="<%= raw mock_type %>" data-ost-mock-element="<%= raw mock_selector %>">15.898</div>
+                                                <div class="ost-mocker-value-post"></div>
+                                            </div>
+                                            <div class="ost-mocker-footer"></div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="col-6 mt-1">
-                                    <%= render :partial => "/shared/web/common/mocker",
-                                                :locals => {
-                                                    :header => "AMOUNT IN " + fiat_display_text,
-                                                    :mock_selector => "#commission_in_fiat"
-                                                }
-                                    %>
+                                    <div class="card mocker-card <%= card_classes %> ">
+                                        <div class="card-body">
+                                            <div class="ost-mocker-header">header</div>
+                                            <div class="ost-mocker-value-wrap">
+                                                <div class="ost-mocker-value-pre"></div>
+                                                <div class="ost-mocker-value" data-type="<%= raw mock_type %>" data-ost-mock-element="<%= raw mock_selector %>">15.898</div>
+                                                <div class="ost-mocker-value-post"></div>
+                                            </div>
+                                            <div class="ost-mocker-footer"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
