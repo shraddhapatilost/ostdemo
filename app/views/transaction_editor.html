@@ -15,12 +15,16 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.1/bootstrap-slider.js"></script>
+
+
     <script type="text/javascript" src="../javascript/demo.js"></script>
     <script type="text/javascript" src="../javascript/Cookies.js"></script>
     <script type="text/javascript" src="../javascript/transaction_editor.js"></script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.1/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="../javascript/bootstrap-slider-text-input.js"></script>
+
     <link rel="stylesheet" type="text/css" href="../css/transaction_editor.css">
     <body>
     <div class="container">
@@ -101,25 +105,25 @@
 
 
             <div class="row" id="j-action-amount-wrap">
-                <div class="col-4">
-                    <div class="form-group" id="transaction_value_in_fiat_form_group">
-                        <label class="form-label text-uppercase" data-forid="transaction_name">Action amount (fiat_display_text )</label>
-                            <input id="value_in_fiat" type="number" name="amount"
-                            class="form-control" aria-describedby="emailHelp" max="100"
-                            step="0.01" min="0.01" data-ost-num-autocorrect-element
-                            placeholder="Action amount (fiat_display_text )" required/>
-                            <div class="invalid-feedback" data-forid="value_in_fiat">&nbps;</div>
-                    </div>
-                </div>
+                <!--<div class="col-4">-->
+                    <!--<div class="form-group" id="transaction_value_in_fiat_form_group">-->
+                        <!--<label class="form-label text-uppercase" data-forid="transaction_name">Action amount (fiat_display_text )</label>-->
+                            <!--<input id="value_in_fiat" type="number" name="amount"-->
+                            <!--class="form-control" aria-describedby="emailHelp" max="100"-->
+                            <!--step="0.01" min="0.01" data-ost-num-autocorrect-element-->
+                            <!--placeholder="Action amount (fiat_display_text )" required/>-->
+                            <!--<div class="invalid-feedback" data-forid="value_in_fiat">&nbps;</div>-->
+                    <!--</div>-->
+                <!--</div>-->
 
-                <div class="col-4">
+                <div class="col-8">
                     <div class="form-group" id="value_in_bt_form_group">
                         <label class="form-label text-uppercase" data-forid="transaction_name">Action amount ( bt_symbol)</label>
                         <input id="value_in_bt" type="number"
                             name="amount" class="form-control"
                             step="0.00001" min="0.00001"
                             data-ost-num-autocorrect-element
-                            aria-describedby="emailHelp" placeholder="Action amount ( bt_symbol)" required/>
+                            aria-describedby="emailHelp" placeholder="Action amount ( bt_symbol)" value="10.00014" required/>
                         <div class="invalid-feedback" data-forid="value_in_bt">&nbps;</div>
                     </div>
                 </div>
@@ -127,17 +131,17 @@
                 <div class="col-2 mt-2">
                     <input type="hidden" name="value_in_ost" id="value_in_ost" value="7.5" />
                     <div style="margin-top: 2px;">
-                        <div class="card mocker-card <%= card_classes %> ">
-                            <div class="card-body">
-                                <div class="ost-mocker-header">header</div>
-                                <div class="ost-mocker-value-wrap">
-                                    <div class="ost-mocker-value-pre"></div>
-                                    <div class="ost-mocker-value" data-type="<%= raw mock_type %>" data-ost-mock-element="<%= raw mock_selector %>">15.898</div>
-                                    <div class="ost-mocker-value-post"></div>
-                                </div>
-                                <div class="ost-mocker-footer"></div>
-                            </div>
-                        </div>
+                        <!--<div class="card mocker-card <%= card_classes %> ">-->
+                            <!--<div class="card-body">-->
+                                <!--<div class="ost-mocker-header">AMOUNT IN OST</div>-->
+                                <!--<div class="ost-mocker-value-wrap">-->
+                                    <!--<div class="ost-mocker-value-pre"></div>-->
+                                    <!--<div class="ost-mocker-value" data-type="<%= raw mock_type %>" data-ost-mock-element="<%= raw mock_selector %>">15.898</div>-->
+                                    <!--<div class="ost-mocker-value-post"></div>-->
+                                <!--</div>-->
+                                <!--<div class="ost-mocker-footer"></div>-->
+                            <!--</div>-->
+                        <!--</div>-->
 
 
                     </div>
@@ -159,7 +163,6 @@
 
 
                 <div class="col-12">
-                    <% # Below form-group is UI only %>
                     <div class="form-group" id="has_commission_group">
                         <div class="form-check form-check-inline mr-4">
                             <input class="form-check-input radio-button j-has-commission" type="radio"
@@ -217,8 +220,8 @@
                                                 <!--</span>-->
                                             <!--</span>-->
 
-                                        <input type="<%=type%>" class="form-control" id="<%=id%>" name="<%=name%>"
-                                               min="<%=min%>" max="<%=max%>" step="<%=step%>" />
+                                        <input type="number" class="form-control" id="commission_percent" name="commission_percent"
+                                               min="0" max="100" step="0.1" value="1" />
                                             <span class="input-group-append">
                                                 <span class="input-group-text">
                                                 %</span>
@@ -242,37 +245,37 @@
                             <input type="hidden" name="commission_in_fiat" id="commission_in_fiat" value="1.5" />
                         </div>
 
-                        <div class="col-4" id="j-mocker-content-wrap">
-                            <div class="row">
-                                <div class="col-6 mt-1">
-                                    <div class="card mocker-card <%= card_classes %> ">
-                                        <div class="card-body">
-                                            <div class="ost-mocker-header">header</div>
-                                            <div class="ost-mocker-value-wrap">
-                                                <div class="ost-mocker-value-pre"></div>
-                                                <div class="ost-mocker-value" data-type="<%= raw mock_type %>" data-ost-mock-element="<%= raw mock_selector %>">15.898</div>
-                                                <div class="ost-mocker-value-post"></div>
-                                            </div>
-                                            <div class="ost-mocker-footer"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <!--<div class="col-4" id="j-mocker-content-wrap">-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-6 mt-1">-->
+                                    <!--<div class="card mocker-card <%= card_classes %> ">-->
+                                        <!--<div class="card-body">-->
+                                            <!--<div class="ost-mocker-header">AMOUNT IN BT</div>-->
+                                            <!--<div class="ost-mocker-value-wrap">-->
+                                                <!--<div class="ost-mocker-value-pre"></div>-->
+                                                <!--<div class="ost-mocker-value" data-type="<%= raw mock_type %>" data-ost-mock-element="<%= raw mock_selector %>">15.898</div>-->
+                                                <!--<div class="ost-mocker-value-post"></div>-->
+                                            <!--</div>-->
+                                            <!--<div class="ost-mocker-footer"></div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
 
-                                <div class="col-6 mt-1">
-                                    <div class="card mocker-card <%= card_classes %> ">
-                                        <div class="card-body">
-                                            <div class="ost-mocker-header">header</div>
-                                            <div class="ost-mocker-value-wrap">
-                                                <div class="ost-mocker-value-pre"></div>
-                                                <div class="ost-mocker-value" data-type="<%= raw mock_type %>" data-ost-mock-element="<%= raw mock_selector %>">15.898</div>
-                                                <div class="ost-mocker-value-post"></div>
-                                            </div>
-                                            <div class="ost-mocker-footer"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                <!--<div class="col-6 mt-1">-->
+                                    <!--&lt;!&ndash;<div class="card mocker-card <%= card_classes %> ">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="card-body">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="ost-mocker-header">header</div>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="ost-mocker-value-wrap">&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="ost-mocker-value-pre"></div>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="ost-mocker-value" data-type="<%= raw mock_type %>" data-ost-mock-element="<%= raw mock_selector %>">15.898</div>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="ost-mocker-value-post"></div>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="ost-mocker-footer"></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
 
                     </div>
                 </div>

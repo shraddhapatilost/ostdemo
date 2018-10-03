@@ -141,3 +141,13 @@ hr{
     padding-left: 0;
     margin-right: 0.75rem;
 }
+#commission_percent_slide  {
+    background: #BABABA;
+}
+.tooltip-inner {
+    white-space: nowrap;
+    max-width: none;
+}
+.tooltip .top {
+     margin-top: -36px;
+ }
