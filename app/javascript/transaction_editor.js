@@ -5,19 +5,6 @@
     var jUserToUser = $("#kind_user_to_user")
       , jForm       = $("#transaction_editor_form");
 
-    // var jKind = jForm.find('.j-tx-kind:checked');
-    // tx_kind = jKind.val();
-
-    //console.log("tx_kind",tx_kind);
-    // if(jForm.find('#kind_user_to_user:checked') ){
-    //   console.log("#kind_user_to_user  is true")
-    // }
-    // if(jForm.find('#kind_user_to_comapny:checked') ){
-    //   console.log("#kind_user_to_company  is true")
-    // }
-    // if(jForm.find('#kind_company_to_user:checked')){
-    //   console.log("#kind_company_to_user  is true")
-    // }
 
     jForm.find('.j-tx-kind').change( function () {
       toggleCommissionsRow();
@@ -55,11 +42,7 @@
       }
 
     }
-    // $(".slider-with-input").on('input change',function () {
-    //   console.log($('#commission_percent_slider').val());
-    //   var sliderResult =  $('#commission_percent_slider').val()
-    //   $("#slider-result").val(sliderResult);
-    // })
+
 
     $('#commission_percent_slider').slider({
       formatter: function(value) {
@@ -74,23 +57,34 @@
       , vFiat       = jValueInFiat.val()
     console.log("vCommission",vCommission);
 
-    // var jValueInOst             = $("#value_in_ost");
-    // cInFiat     = vFiat.times( vCommission ).div( 100 );
-    //
-    // oThis.jCInBt.setVal( toBt( cInBt ) );
-    //
-    //  function toBt ( bt ) {
-    //   var oThis = this;
-    //
-    //   if ( oThis.isNaN( bt ) ) {
-    //     return NaN;
-    //   }
-    //   bt = BigNumber( bt );
-    //   return BigNumber( bt.toFixed(P_BT, P_BT_ROUND_ROUNDING_MODE) );
-    // }
 
+    $("#transaction_editor_submit_btn").on("click",function () {
+
+      var newData = getFormData();
+      console.log("newData", newData);
+      global_actions.push(newData);
+      console.log("global_actions",global_actions);
+
+    });
+    $("#transaction_editor_cancel_btn").on("click",function () {
+
+
+    })
   }
 
+
+
+  function getFormData(){
+    var jForm       = $("#transaction_editor_form");
+    var newEntry ={};
+
+    newEntry.action_name = $("#transaction_name").val();
+    newEntry.action_kind = $('.j-tx-kind:checked').val();
+    newEntry.value_bt = $('.j-action-amount-setting').val();
+    newEntry.commission = $('.j-action-amount-setting').val();
+
+    return newEntry;
+  }
 
 
 

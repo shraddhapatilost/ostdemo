@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title> Reserve </title>
+        <title> Transaction editor </title>
         <link rel="stylesheet" type="text/css" href="../css/demo.css">
         <link rel="stylesheet" type="text/css" href="../css/transaction_editor.css">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.1/css/bootstrap-slider.css">
@@ -21,6 +21,8 @@
 
     <script type="text/javascript" src="../javascript/demo.js"></script>
     <script type="text/javascript" src="../javascript/Cookies.js"></script>
+    <script type="text/javascript" src="../javascript/transaction_list.js"></script>
+
     <script type="text/javascript" src="../javascript/transaction_editor.js"></script>
 
     <script type="text/javascript" src="../javascript/bootstrap-slider-text-input.js"></script>
@@ -28,7 +30,7 @@
     <link rel="stylesheet" type="text/css" href="../css/transaction_editor.css">
     <body>
     <div class="container">
-        <form id="transaction_editor_form" class="user-form" action="/api/client/sign-up" method="POST" data-ost-formhelper>
+        <form id="transaction_editor_form" class="user-form">
             <input type="hidden" name="id" id="transaction_id" />
             <input type="hidden" name="device_id" id="transaction_device_id"/>
 
@@ -40,7 +42,7 @@
                     <hr class="mb-0"/>
                 </div>
                 <div class="col-12">
-                    <div class="form-group m-0" id="kindFormGroup">
+                    <div class="form-group mb-4" id="kindFormGroup">
                         <div class="form-check form-check-inline mr-4">
                             <input class="form-check-input radio-button j-tx-kind" type="radio"
                                 name="kind" id="kind_user_to_user" value="user_to_user" checked/>
@@ -74,8 +76,8 @@
                 <div class="col-4"></div>
 
 
-                <div class="col-12 form-group mb-0">
-                <label class="form-label">ARBITRARY AMOUNT AT EXECUTION
+                <div class="col-12 form-group mt-4 mb-0">
+                <label class="form-label ">ARBITRARY AMOUNT AT EXECUTION
                     
                     <a href="https://help.ost.com/support/solutions/articles/35000059260-how-do-you-set-transaction-values"
                         target="_blank" class="text-uppercase card-link hover-link">Learn More</a>
@@ -117,7 +119,7 @@
                 <!--</div>-->
 
                 <div class="col-8">
-                    <div class="form-group" id="value_in_bt_form_group">
+                    <div class="form-group mt-4" id="value_in_bt_form_group">
                         <label class="form-label text-uppercase" data-forid="transaction_name">Action amount ( bt_symbol)</label>
                         <input id="value_in_bt" type="number"
                             name="amount" class="form-control"
@@ -150,7 +152,7 @@
 
 
             <div class="row" id="commission-options-row">
-                <div class="col-12 form-group mb-0">
+                <div class="col-12 form-group mt-4 mb-0">
                     <label class="form-label">
                         ARBITRARY COMMISSION AT EXECUTION
                     
@@ -186,7 +188,7 @@
                 <div class="col-12" id="commission_percent_wrap">
                     <div class="row">
                         <div class="col-12">
-                            <div class="form-group mb-0">
+                            <div class="form-group mt-4 mb-0">
                             <label class="form-label" for="commission_percent">SET COMMISSION IN %
                                 <span class="text-lowercase">(<span class="text-capitalize">The</span> commission will be added on top of the action amount)</span>
                             </label>

@@ -1,14 +1,17 @@
 
   var metamakMsgsModal;
 
-  window.addEventListener("load",function() {
+  $(document).on("load",function() {
 	  metamakMsgsModal = $("#metamaskMsgs");
-	  if(window.web3 !== undefined && web3.currentProvider && web3.currentProvider.isMetaMask){
-		  if(web3.eth.accounts == 0){showModal("Please Unlock MetaMask before you proceed");}
-		}
-    else {
-			showModal("Please ensure that you have installed MetaMask before you proceed");
-		}
+	  setTimeout(function () {
+      if(window.web3 !== undefined && web3.currentProvider && web3.currentProvider.isMetaMask){
+        if(web3.eth.accounts == 0){showModal("Please Unlock MetaMask before you proceed");}
+      }
+      else {
+        showModal("Please ensure that you have installed MetaMask before you proceed");
+      }
+    },300);
+
   });
 
   function showModal(msg){
